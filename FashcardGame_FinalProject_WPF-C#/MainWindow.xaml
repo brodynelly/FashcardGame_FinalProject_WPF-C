@@ -3,10 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FashcardGame_FinalProject_WPF_C_"
+        xmlns:viewmodels="clr-namespace:FashcardGame_FinalProject_WPF_C_.viewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <!-- DataContext for MainWindow -->
+    <Window.DataContext>
+        <viewmodels:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <!-- Navigation Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Gray">
+            <Button Content="Classes" Command="{Binding NavigateToClassesCommand}" />
+            <Button Content="Courses" Command="{Binding NavigateToCoursesCommand}" />
+            <Button Content="Flashcards" Command="{Binding NavigateToFlashcardsCommand}" />
+        </StackPanel>
+
+        <!-- Frame to hold pages -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
     </Grid>
 </Window>

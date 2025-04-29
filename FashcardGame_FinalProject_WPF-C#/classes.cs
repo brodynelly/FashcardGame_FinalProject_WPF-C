@@ -57,6 +57,13 @@ namespace Game
         {
             return studyThings.Count; // Count how many study sets are in the list
         }
+
+        // public function 
+        public string Name
+        {
+            get { return name; }
+            set { name = value;  }
+        }
     }
 
     public class StudySet

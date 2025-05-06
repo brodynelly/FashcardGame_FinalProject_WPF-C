@@ -52,12 +52,20 @@ namespace FashcardGame_FinalProject_WPF_C_.viewModels
         public StudentConfigViewModel()
         {
             SaveStudentConfigCommand = new RelayCommand(SaveStudentConfig);
-            this._student = new Game.Student();
+            _student = new Game.Student();
+            _studentName = ""; // Initialize _studentName
         }
 
         private void SaveStudentConfig()
         {
             Console.WriteLine($"Saving student configuration for {StudentName}");
+
+            if (string.IsNullOrWhiteSpace(StudentName))
+            {
+                MessageBox.Show("Please enter a valid student name.");
+                return;
+            }
+            // Create a new student object with the provided name
             _student.name = StudentName;
             StudentExists = true;
             NavigateToClassesPage(_student);
@@ -66,9 +74,11 @@ namespace FashcardGame_FinalProject_WPF_C_.viewModels
         private void NavigateToClassesPage(Game.Student student)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow != null && mainWindow.MainFrame != null)
+            if (mainWindow?.MainFrame != null)
             {
-                mainWindow.MainFrame.Navigate(typeof(ClassesPage), student); // Pass the student object
+                var classesPage = new ClassesPage();
+                classesPage.DataContext = new ClassesPageViewModel { CurrentStudent = student };
+                mainWindow.MainFrame.Navigate(classesPage);
             }
         }
     }

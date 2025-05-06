@@ -24,7 +24,7 @@ namespace FashcardGame_FinalProject_WPF_C_.views
         public StudentConfig()
         {
             InitializeComponent();
-            DataContext = new StudentConfigViewModel();  // Set the ViewModel for this page
+            this.DataContext = new StudentConfigViewModel();   // Set the ViewModel for this page
         }
     }
 }

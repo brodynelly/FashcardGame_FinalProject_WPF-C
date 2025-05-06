@@ -9,11 +9,9 @@ namespace FashcardGame_FinalProject_WPF_C_
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        // Event to notify when a property has changed
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        // Helper method to raise the PropertyChanged event
-        protected void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

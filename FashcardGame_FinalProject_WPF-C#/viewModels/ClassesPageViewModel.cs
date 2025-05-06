@@ -8,7 +8,7 @@ namespace FashcardGame_FinalProject_WPF_C_.viewModels
 {
     public class ClassesPageViewModel : BaseViewModel
     {
-        private Student _currentStudent;
+        private Student _currentStudent = new Student("Default Student");
         public Student CurrentStudent
         {
             get { return _currentStudent; }

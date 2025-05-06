@@ -4,13 +4,25 @@ using System.Windows.Input;
 
 namespace FashcardGame_FinalProject_WPF_C_.viewModels
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
         private StudentConfigViewModel studentConfig;
         public ICommand NavigateToClassesCommand { get; }
         public ICommand NavigateToCoursesCommand { get; }
         public ICommand NavigateToFlashcardsCommand { get; }
         public ICommand NavigateToStudentCommand { get; }
+
+        private BaseViewModel _currentPageViewModel; // Or a more specific base class/interface
+
+        public BaseViewModel CurrentPageViewModel
+        {
+            get { return _currentPageViewModel; }
+            set
+            {
+                _currentPageViewModel = value;
+                OnPropertyChanged(nameof(CurrentPageViewModel));
+            }
+        }
 
         public MainViewModel()
         {
@@ -20,11 +32,7 @@ namespace FashcardGame_FinalProject_WPF_C_.viewModels
             NavigateToCoursesCommand = new RelayCommand(NavigateToCourses);
             NavigateToFlashcardsCommand = new RelayCommand(NavigateToFlashcards);
 
-            // Check if student exists, otherwise navigate to StudentConfig
-            if (!studentConfig.StudentExists)
-            {
-                NavigateToStudent();
-            }
+
         }
 
         public void NavigateToStudent()

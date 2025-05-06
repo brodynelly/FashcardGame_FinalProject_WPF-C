@@ -6,7 +6,7 @@ using System.Windows; // For Application.Current
 
 namespace FashcardGame_FinalProject_WPF_C_.viewModels
 {
-    public class ClassesPageViewModel : BaseViewModel
+    public class ClassesPageViewModel : BaseViewModel 
     {
         private Student _currentStudent = new Student("Default Student");
         public Student CurrentStudent
